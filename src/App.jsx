@@ -55,7 +55,7 @@ function App() {
             onChange={(e)=>{setProtocol(e.target.value)}}
           >
             <option value="https://">https</option>
-            <option value="png">http</option>
+            <option value="http://">http</option>
           </select>
           <input
             className=" w-60 focus-within:outline-none"
@@ -65,7 +65,17 @@ function App() {
           />
           <button
             onClick={async () => {
-              const res = await navigator.clipboard.readText()
+              var res = await navigator.clipboard.readText()
+              if(res.startsWith("https://"))
+              {
+                setProtocol("https://")
+                res = res.replace("https://", '')
+               } 
+              else if(res.startsWith("http://"))
+              {
+                setProtocol("http://")
+                res = res.replace("http://", '')
+              }
               urlRef.current.value = res
             }}
           >
