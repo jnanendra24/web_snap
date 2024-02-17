@@ -50,7 +50,7 @@ function App() {
           className="border-2 rounded-lg p-2 w-96 flex items-center justify-between m-5 focus-within:border-black sticky top-2 bg-white"
         >
           <select 
-            className="w-18 shadow-sm focus-within:outline-none sm:text-sm"
+            className="w-18 shadow-sm bg-gray-100 rounded-md focus-within:outline-none sm:text-sm"
             value={protocol} 
             onChange={(e)=>{setProtocol(e.target.value)}}
           >
