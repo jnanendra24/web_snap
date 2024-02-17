@@ -82,7 +82,7 @@ function App() {
           {error && <div>{error.message}</div> }
           {image != "" && isLoading == false && error == null &&
             <div
-              className="flex flex-col p-5 border-2 w-fit m-auto shadow-lg rounded-lg bg-gray-100 font-serif"
+              className="flex flex-col p-5 border-2 w-fit m-5 shadow-lg rounded-lg bg-gray-100 font-serif"
             >
               <SyncLoader loading={!imageLoaded} />
               {imageLoaded && 
