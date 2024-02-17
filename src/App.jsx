@@ -12,10 +12,10 @@ function App() {
   const [error, setError] = useState(null)
   const [imageLoaded, setImageLoaded] = useState(false)
   const [statusMessage, setStatusMessage] = useState("")
-
+  const [protocol, setProtocol] = useState("https://")
   const getSS = async () => {
     const query = "https://api.screenshotone.com/take?format=jpeg&image_quality=5&full_page=true"
-    const url = encodeURIComponent(urlRef.current.value)
+    const url = encodeURIComponent(`${protocol}${urlRef.current.value}`)
     setIsLoading(true)
     setImageLoaded(false)
     setStatusMessage("")
@@ -47,12 +47,20 @@ function App() {
         className="flex flex-col items-center"
       >
         <div
-          className="border-2 rounded-lg p-2 w-80 flex items-center justify-between m-5 focus-within:border-black sticky top-2 bg-white"
+          className="border-2 rounded-lg p-2 w-96 flex items-center justify-between m-5 focus-within:border-black sticky top-2 bg-white"
         >
+          <select 
+            className="w-18 shadow-sm focus-within:outline-none sm:text-sm"
+            value={protocol} 
+            onChange={(e)=>{setProtocol(e.target.value)}}
+          >
+            <option value="https://">https</option>
+            <option value="png">http</option>
+          </select>
           <input
             className=" w-60 focus-within:outline-none"
             type="url"
-            placeholder="https://www.example.com/"
+            placeholder="example.com"
             ref={urlRef}
           />
           <button
@@ -74,7 +82,7 @@ function App() {
         </div>
         <div>
           <div className="flex flex-col items-center">
-            {image == "" && !isLoading && <Intro />}
+            {image == "" && !isLoading && error== null && <Intro />}
             <ClockLoader
               color={"#000000"}
               loading={isLoading}
